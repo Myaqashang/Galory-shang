@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>گالری پابجی ما</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>🎮 گالری پابجی ما</h1>
+    <p>اسکرین‌شات‌های بازی با دوستان</p>
+  </header>
+
+  <main>
+
+</html>
+<script>
+function openLightbox(img){
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightbox-img');
+  lightbox.style.display = 'flex';
+  lightboxImg.src = img.src;
+}
+
+function closeLightbox(){
+  document.getElementById('lightbox').style.display = 'none';
+}
+</script>
+<div class="gallery-grid">
+  <div class="card">
+    <img src="https://uploadkon.ir/uploads/651830_25IMG-20250930-140118-821.jpg" alt="تصویر 1" onclick="openLightbox(this)">
+    <div class="caption">فرعون رو داخل بازی دیدم</div>
+  </div>
+  <div class="card">
+    <img src="https://uploadkon.ir/uploads/8d2830_25IMG-20250930-141920-537.jpg" alt="تصویر 2" onclick="openLightbox(this)">
+    <div class="caption">با 14 کیل مپ رو رنده کردم</div>
+  </div>
+  <!-- عکس‌های جدید -->
+</div>
+
+<!-- Lightbox -->
+<div id="lightbox" onclick="closeLightbox()">
+  <img id="lightbox-img" src="">
+</div>
