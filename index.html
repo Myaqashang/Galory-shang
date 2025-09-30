@@ -1,45 +1,295 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>گالری پابجی ما</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>گالری پابجی ما</title>
+<style>
+:root{
+  --bg: #0f0f1f;
+  --card-bg: #1c1c2f;
+  --accent: #8e44ad;
+  --text: #e0e0e0;
+  --shadow: rgba(0,0,0,0.6);
+}
+
+*{box-sizing:border-box;margin:0;padding:0;font-family: Vazirmatn, Tahoma, sans-serif;}
+
+body{
+  background: linear-gradient(135deg,#0f0f1f,#1a1a2e);
+  color: var(--text);
+  min-height: 100vh;
+}
+
+header{
+  text-align:center;
+  padding: 30px 20px;
+  background: linear-gradient(135deg, #2e1a3f, #5a2f80);
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  box-shadow: 0 4px 20px var(--shadow);
+}
+
+header h1{
+  font-size:2rem;
+  color: var(--accent);
+  margin-bottom: 8px;
+}
+
+header p{
+  font-size:1rem;
+  color:#ccc;
+}
+
+main{
+  max-width:1100px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+.gallery-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
+  gap:20px;
+}
+
+.card{
+  background: var(--card-bg);
+  border-radius:15px;
+  overflow:hidden;
+  box-shadow: 0 10px 25px var(--shadow);
+  transition: transform 0.3s, box-shadow 0.3s;
+  display:flex;
+  flex-direction: column;
+}
+
+.card img{
+  width:100%;
+  height:200px;
+  object-fit:cover;
+  cursor:pointer;
+  display:block;
+}
+
+.card:hover{
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 15px 40px var(--shadow);
+}
+
+/* کپشن */
+.caption{
+  padding:8px 12px;
+  font-size:0.9rem;
+  color:#eee;
+  text-align:center;
+  background: rgba(0,0,0,0.2);
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+/* دکمه دانلود */
+.download-btn{
+  display: block;
+  margin: 8px auto 12px auto;
+  padding: 8px 14px;
+  background: linear-gradient(135deg, #8e44ad, #3498db);
+  color: #fff;
+  text-align: center;
+  font-size: 0.9rem;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+  width: fit-content;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.5);
+}
+
+.download-btn:hover{
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.6);
+  background: linear-gradient(135deg, #3498db, #8e44ad);
+}
+
+/* شمارش عکس‌ها */
+#photo-count {
+  text-align: center;
+  font-size: 1.3rem;
+  color: #fff;
+  background: linear-gradient(135deg, #8e44ad, #3498db);
+  padding: 14px 22px;
+  border-radius: 14px;
+  margin: 40px auto 20px auto;
+  width: fit-content;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+}
+
+/* Lightbox */
+#lightbox{
+  position: fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background: rgba(0,0,0,0.85);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index: 1000;
+  flex-direction: column;
+}
+
+#lightbox img{
+  max-width:90%;
+  max-height:80%;
+  border-radius:10px;
+  box-shadow:0 8px 30px rgba(0,0,0,0.8);
+  animation: fadeIn 0.3s ease;
+}
+
+#lightbox .controls{
+  margin-top:15px;
+  display:flex;
+  gap:20px;
+  align-items:center;
+}
+
+#lightbox button{
+  padding:8px 14px;
+  font-size:0.9rem;
+  border:none;
+  border-radius:10px;
+  cursor:pointer;
+  color:#fff;
+  background: linear-gradient(135deg, #8e44ad, #3498db);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+#lightbox button:hover{
+  transform: translateY(-2px) scale(1.05);
+  box-shadow:0 10px 25px rgba(0,0,0,0.6);
+}
+
+@keyframes fadeIn{
+  from{opacity:0; transform: scale(0.9);}
+  to{opacity:1; transform: scale(1);}
+}
+
+footer{
+  text-align:center;
+  padding:20px;
+  margin-top:40px;
+  color:#aaa;
+  font-size:0.9rem;
+}
+</style>
 </head>
 <body>
-  <header>
-    <h1>🎮 گالری پابجی ما</h1>
-    <p>اسکرین‌شات‌های بازی با دوستان</p>
-  </header>
+<header>
+  <h1>🎮 گالری پابجی ما</h1>
+  <p>اسکرین‌شات‌های بازی با دوستان</p>
+</header>
 
-  <main>
+<main>
+<div class="gallery-grid">
+  <div class="card">
+    <img src="https://uploadkon.ir/uploads/8d2830_25IMG-20250930-141920-537.jpg" alt="تصویر 1" onclick="openLightbox(0)">
+    <div class="caption">با 14 کیل مپ رو رنده کردم</div>
+    <a href="https://uploadkon.ir/uploads/8d2830_25IMG-20250930-141920-537.jpg" download class="download-btn">دانلود عکس</a>
+  </div>
+  <div class="card">
+    <img src="https://uploadkon.ir/uploads/013c30_25bbb-10.png" alt="تصویر 2" onclick="openLightbox(1)">
+    <div class="caption">یه موی جدید گرفتم برای اکانتم</div>
+    <a href="https://uploadkon.ir/uploads/013c30_25bbb-10.png" download class="download-btn">دانلود عکس</a>
+  </div>
+  <div class="card">
+    <img src="https://uploadkon.ir/uploads/036a30_25bbb-1.png" alt="تصویر 2" onclick="openLightbox(1)">
+    <div class="caption">یه بک پک‌جدید گرفتم برای اکانتم</div>
+    <a href="https://uploadkon.ir/uploads/036a30_25bbb-1.png" download class="download-btn">دانلود عکس</a>
+  </div>
+    <div class="card">
+    <img src="https://uploadkon.ir/uploads/0abe30_25bbb-11.png" alt="تصویر 2" onclick="openLightbox(1)">
+    <div class="caption">با سیلور یه ماشین گرفتم برای اکانتم</div>
+    <a href="https://uploadkon.ir/uploads/0abe30_25bbb-11.png" download class="download-btn">دانلود عکس</a>
+  </div>
+  <div class="card">
+    <img src="https://uploadkon.ir/uploads/9baa30_25bbb-3.png" alt="تصویر 2" onclick="openLightbox(1)">
+    <div class="caption">با سیلور یه بک پک‌ جدید گرفتم برای اکانتم</div>
+    <a href="https://uploadkon.ir/uploads/9baa30_25bbb-3.png" download class="download-btn">دانلود عکس</a>
+  </div>
+    <div class="card">
+    <img src="https://uploadkon.ir/uploads/1e3530_25bbb-5.png" alt="تصویر 2" onclick="openLightbox(1)">
+    <div class="caption">با سیلور یه لباس قشنگ برای اکانتم گرفتم</div>
+    <a href="https://uploadkon.ir/uploads/1e3530_25bbb-5.png" download class="download-btn">دانلود عکس</a>
+  </div>
+  <div class="card">
+    <img src="https://uploadkon.ir/uploads/69ce30_25bbb-7.png" alt="تصویر 2" onclick="openLightbox(1)">
+    <div class="caption">با سیلور یه کلاه جدید برای اکانتم گرفتم</div>
+    <a href="https://uploadkon.ir/uploads/69ce30_25bbb-7.png" download class="download-btn">دانلود عکس</a>
+  </div>
+    <div class="card">
+    <img src="https://uploadkon.ir/uploads/353a30_25bmv-1.png" alt="تصویر 2" onclick="openLightbox(1)">
+    <div class="caption">با جم متیک فورج برای اکانت امفور یخیم M24 گرفتم برای اکانتم</div>
+    <a href="https://uploadkon.ir/uploads/353a30_25bmv-1.png" download class="download-btn">دانلود عکس</a>
+  </div>
+  <div class="card">
+    <img src="https://uploadkon.ir/uploads/f37230_25bmv.png" alt="تصویر 2" onclick="openLightbox(1)">
+    <div class="caption">اران با کارت جعبه این هلمت رو گرفت</div>
+    <a href="https://uploadkon.ir/uploads/f37230_25bmv.png" download class="download-btn">دانلود عکس</a>
+  </div>
+  
+  <!-- عکس‌های جدید اضافه کن -->
+</div>
 
-</html>
+<p id="photo-count">تعداد عکس‌ها: 0</p>
+</main>
+
+<!-- Lightbox -->
+<div id="lightbox" onclick="closeLightbox()">
+  <img id="lightbox-img" src="">
+  <div class="controls">
+    <button onclick="prevPhoto(event)">⟨ قبلی</button>
+    <button onclick="nextPhoto(event)">بعدی ⟩</button>
+    <a id="lightbox-download" href="" download style="padding:8px 14px;background:#3498db;color:#fff;border-radius:10px;text-decoration:none;">دانلود</a>
+  </div>
+</div>
+
+<footer>
+  <p>© 2025 گالری پابجی ما</p>
+</footer>
+
 <script>
-function openLightbox(img){
+const gallery = document.querySelectorAll('.gallery-grid .card img');
+const countEl = document.getElementById('photo-count');
+countEl.textContent = `تعداد عکس‌ها: ${gallery.length}`;
+
+let currentIndex = 0;
+
+function openLightbox(index){
+  currentIndex = index;
   const lightbox = document.getElementById('lightbox');
   const lightboxImg = document.getElementById('lightbox-img');
+  const downloadLink = document.getElementById('lightbox-download');
   lightbox.style.display = 'flex';
-  lightboxImg.src = img.src;
+  lightboxImg.src = gallery[currentIndex].src;
+  downloadLink.href = gallery[currentIndex].src;
+}
+
+// جلوگیری از بسته شدن با کلیک روی دکمه‌ها
+function prevPhoto(event){
+  event.stopPropagation();
+  currentIndex = (currentIndex - 1 + gallery.length) % gallery.length;
+  document.getElementById('lightbox-img').src = gallery[currentIndex].src;
+  document.getElementById('lightbox-download').href = gallery[currentIndex].src;
+}
+
+function nextPhoto(event){
+  event.stopPropagation();
+  currentIndex = (currentIndex + 1) % gallery.length;
+  document.getElementById('lightbox-img').src = gallery[currentIndex].src;
+  document.getElementById('lightbox-download').href = gallery[currentIndex].src;
 }
 
 function closeLightbox(){
   document.getElementById('lightbox').style.display = 'none';
 }
 </script>
-<div class="gallery-grid">
-  <div class="card">
-    <img src="https://uploadkon.ir/uploads/651830_25IMG-20250930-140118-821.jpg" alt="تصویر 1" onclick="openLightbox(this)">
-    <div class="caption">فرعون رو داخل بازی دیدم</div>
-  </div>
-  <div class="card">
-    <img src="https://uploadkon.ir/uploads/8d2830_25IMG-20250930-141920-537.jpg" alt="تصویر 2" onclick="openLightbox(this)">
-    <div class="caption">با 14 کیل مپ رو رنده کردم</div>
-  </div>
-  <!-- عکس‌های جدید -->
-</div>
-
-<!-- Lightbox -->
-<div id="lightbox" onclick="closeLightbox()">
-  <img id="lightbox-img" src="">
-</div>
+</body>
+</html>
